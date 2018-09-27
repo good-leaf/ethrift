@@ -1,3 +1,21 @@
+安装thrift-0.8.0
+1、http://archive.apache.org/dist/thrift/0.8.0/thrift-0.8.0.tar.gz
+2、./configure --prefix=/opt/thrift-0.8.0 --without-ruby --without-php --without-python
+3、make && make install
+4、/opt/thrift-0.8.0/bin/thrift --gen erl *.thrift
+5、默认生成/usr/local/lib/erlang/lib/thrift-0.8.0，在使用erlang.mk时， LOCAL_DEPS = thrift 打包thrift库
+
+bin/thrift --gen erl *.thrift
+
+use erlang.mk:
+PROJECT = test
+PROJECT_DESCRIPTION = New project
+PROJECT_VERSION = 0.1.0
+DEPS = thrift jsx
+dep_thrift = git https://github.com/good-leaf/ethrift.git master
+dep_jsx = git https://github.com/talentdeficit/jsx.git v0.9.0
+include erlang.mk
+
 Thrift Erlang Software Library
 
 License
@@ -47,14 +65,3 @@ Notes
 To use the JSON protocol client, you will need jsx.  This will be pulled in
 via rebar for building but not automatically installed by make install.
 
-
-bin/thrift --gen erl *.thrift
-
-use erlang.mk:
-PROJECT = test
-PROJECT_DESCRIPTION = New project
-PROJECT_VERSION = 0.1.0
-DEPS = thrift jsx
-dep_thrift = git https://github.com/good-leaf/ethrift.git master
-dep_jsx = git https://github.com/talentdeficit/jsx.git v0.9.0
-include erlang.mk
