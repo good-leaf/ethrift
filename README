@@ -46,3 +46,15 @@ Notes
 =====
 To use the JSON protocol client, you will need jsx.  This will be pulled in
 via rebar for building but not automatically installed by make install.
+
+
+bin/thrift --gen erl *.thrift
+
+use erlang.mk:
+PROJECT = test
+PROJECT_DESCRIPTION = New project
+PROJECT_VERSION = 0.1.0
+DEPS = thrift jsx
+dep_thrift = git https://github.com/good-leaf/ethrift.git master
+dep_jsx = git https://github.com/talentdeficit/jsx.git v0.9.0
+include erlang.mk
